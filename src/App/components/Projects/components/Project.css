@@ -1,9 +1,9 @@
 .projects > .project {
-    display: flex;
-    flex-direction: row;
+    display: block;
     user-select: none;
 
     > .title {
+        display: inline;
         font-weight: bold;
         color: var(--project-link-color);
         text-decoration: underline;
@@ -25,12 +25,14 @@
     }
 
     > .dash {
+        display: inline;
         white-space: pre;
         opacity: 0.24;
         font-weight: bold;
     }
 
     > .description {
+        display: inline;
         opacity: 0.64;
     }
 }
