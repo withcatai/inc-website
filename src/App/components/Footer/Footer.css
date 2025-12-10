@@ -1,0 +1,12 @@
+.footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    > .companyName {
+        opacity: 0.48;
+        font-size: 14px;
+        user-select: none;
+    }
+}

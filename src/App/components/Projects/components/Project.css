@@ -1,0 +1,36 @@
+.projects > .project {
+    display: flex;
+    flex-direction: row;
+    user-select: none;
+
+    > .title {
+        font-weight: bold;
+        color: var(--project-link-color);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        text-decoration-thickness: 2px;
+        text-decoration-color: rgb(from currentColor r g b / 32%);
+        opacity: 0.8;
+
+        transition: opacity 0.3s var(--transition-easing), text-decoration-color 0.3s var(--transition-easing);
+
+        &:hover,
+        &:active,
+        &:focus-visible {
+            text-decoration-color: rgb(from currentColor r g b / 64%);
+            opacity: 1;
+
+            transition: opacity 0.2s var(--transition-easing), text-decoration-color 0.2s var(--transition-easing);
+        }
+    }
+
+    > .dash {
+        white-space: pre;
+        opacity: 0.24;
+        font-weight: bold;
+    }
+
+    > .description {
+        opacity: 0.64;
+    }
+}

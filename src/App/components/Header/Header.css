@@ -1,0 +1,10 @@
+.header {
+    margin-bottom: 24px;
+
+    > .companyName {
+        opacity: 0.64;
+        font-size: 48px;
+        font-weight: 600;
+        user-select: none;
+    }
+}

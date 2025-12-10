@@ -1,0 +1,67 @@
+name: Build
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+  workflow_dispatch:
+
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Install modules
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Upload build
+        uses: actions/upload-artifact@v4
+        with:
+          include-hidden-files: true
+          name: "dist"
+          path: "dist"
+
+  publish-website:
+    name: Publish Website
+    if: github.ref == 'refs/heads/master' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    concurrency: publish-website-${{ github.ref }}
+    environment:
+      name: website
+      url: "https://withcat.ai"
+    permissions:
+      pages: write
+      id-token: write
+      contents: read
+    needs:
+      - build
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          lfs: true
+          fetch-depth: 0
+          fetch-tags: true
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+      - name: Install modules
+        run: npm ci
+      - uses: actions/download-artifact@v5
+        with:
+          name: dist
+          path: dist
+      - name: Upload website to GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          name: website
+          path: dist
+      - name: Deploy docs to GitHub Pages
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: website
