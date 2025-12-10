@@ -1,5 +1,5 @@
 div.uiDelayedAppearance {
-    animation: delayedAppear var(--entry-delay, 0ms) 1s var(--transition-easing) backwards;
+    animation: delayedAppear 600ms var(--entry-delay, 0ms) var(--transition-easing) backwards;
 }
 
 @keyframes delayedAppear {

@@ -8,7 +8,7 @@ import "./App.css";
 
 export function App() {
     return <div className="app">
-        <DelayedScopeContext initialDelay={300} defaultDelay={200}>
+        <DelayedScopeContext initialDelay={250} defaultDelay={50}>
             <div className="container">
                 <div className="about">
                     <Header />
