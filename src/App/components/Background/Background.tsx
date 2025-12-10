@@ -151,8 +151,8 @@ export function createCircleFieldBackground(
         repulsionStrength: 0.02,
         spreadFactor: 1.6,
 
-        coloredFraction: 0.35,
-        maxColoredRadius: 4 * 3 + 10,
+        coloredFraction: 0.15,
+        maxColoredRadius: 4 * 3 + 16,
         coloredMinSeparationFactor: 2.4,
         colorRepulsionMult: 1.8,
 
@@ -246,6 +246,7 @@ export function createCircleFieldBackground(
 
         circles = [];
 
+        let coloredCircles = 0;
         for (let i = 0; i < maxCircleCount; i++) {
             const radius = config.minRadius + (Math.random() * (config.maxRadius - config.minRadius));
 
@@ -256,7 +257,14 @@ export function createCircleFieldBackground(
             const baseVelocityX = Math.cos(initialAngle) * speed;
             const baseVelocityY = Math.sin(initialAngle) * speed;
 
-            const isColored = radius < config.maxColoredRadius && Math.random() < config.coloredFraction;
+            const isColored = (
+                radius < config.maxColoredRadius &&
+                Math.random() < config.coloredFraction * (
+                    coloredCircles < (config.coloredFraction * circles.length)
+                        ? 2
+                        : 1
+                )
+            );
 
             let circleX = 0;
             let circleY = 0;
@@ -317,6 +325,9 @@ export function createCircleFieldBackground(
                 isColored,
                 color: generateCircleColor(isColored)
             });
+
+            if (isColored)
+                coloredCircles++;
         }
     }
 

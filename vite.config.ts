@@ -15,6 +15,9 @@ export default defineConfig({
     ],
     base: "",
     server: {
+        allowedHosts: process.argv.some((value, index, argv) => (
+            value === "0.0.0.0" && argv[index - 1] === "--host"
+        )) || undefined,
         hmr: !(
             env.get("DISABLE_LIVE_RELOAD")
                 .default("false")
