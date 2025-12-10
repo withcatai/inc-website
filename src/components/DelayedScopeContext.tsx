@@ -44,9 +44,10 @@ function useDelayedEntryScope({
 }
 
 export function useDelayedScopeContext({
-    exclusiveDuration
+    exclusiveDuration, delay = 0
 }: {
-    exclusiveDuration?: number
+    exclusiveDuration?: number,
+    delay?: number
 } = {}): DelayedEntry {
     const scope = useContext(ScopeContext);
     exclusiveDuration ??= scope.defaultDelay;
@@ -57,8 +58,8 @@ export function useDelayedScopeContext({
 
         const now = Date.now();
         const entryTime = scopeState.nextEntryTime <= now
-            ? now
-            : scopeState.nextEntryTime;
+            ? now + delay
+            : scopeState.nextEntryTime + delay;
 
         scopeState.nextEntryTime = entryTime + exclusiveDuration;
 

@@ -4,8 +4,8 @@ import {useDelayedScopeContext} from "./DelayedScopeContext.js";
 
 import "./DelayedAppearanceDiv.css";
 
-export function DelayedAppearanceDiv({exclusiveDuration, className, style: styleProp, ...props}: DelayedAppearanceDivProps) {
-    const delayedEntry = useDelayedScopeContext({exclusiveDuration});
+export function DelayedAppearanceDiv({exclusiveDuration, delay, className, style: styleProp, ...props}: DelayedAppearanceDivProps) {
+    const delayedEntry = useDelayedScopeContext({exclusiveDuration, delay});
 
     const style = useMemo(() => {
         return {
@@ -19,5 +19,6 @@ export function DelayedAppearanceDiv({exclusiveDuration, className, style: style
 
 type DivProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 export type DelayedAppearanceDivProps = DivProps & {
-    exclusiveDuration?: number
+    exclusiveDuration?: number,
+    delay?: number
 };
