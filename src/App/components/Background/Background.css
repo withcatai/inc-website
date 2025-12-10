@@ -1,7 +1,7 @@
 .background {
     position: fixed;
     inset: 0;
-    z-index: -1;
+    z-index: 1;
     width: 100lvw;
     height: 100lvh;
     background-color: var(--background-color);
