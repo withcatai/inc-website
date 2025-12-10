@@ -15,7 +15,7 @@ export function App() {
                     <Projects />
                 </div>
             </div>
+            <Footer />
         </DelayedScopeContext>
-        <Footer />
     </div>;
 }

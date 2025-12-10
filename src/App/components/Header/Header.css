@@ -6,5 +6,10 @@
         font-size: 48px;
         font-weight: 600;
         user-select: none;
+        transition: font-weight 600ms var(--entry-delay, 0ms);
+
+        @starting-style {
+            font-weight: 900;
+        }
     }
 }
